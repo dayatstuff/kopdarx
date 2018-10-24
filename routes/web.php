@@ -15,4 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tasks', 'TasksController@index') ;
+Route::group(['prefix' => 'tasks','as' => 'tasks.','middleware' => 'auth'], function(){
+	Route::get('/', 'TasksController@index')->name('index');
+	Route::get('/{id}', 'TasksController@show')->name('show');
+	Route::get('/delete/{id}', 'TasksController@delete')->name('delete');
+});
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
