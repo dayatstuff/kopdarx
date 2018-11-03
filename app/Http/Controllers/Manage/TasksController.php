@@ -18,7 +18,7 @@ class TasksController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 25;
+        $perPage = 5;
 
         if (!empty($keyword)) {
             $tasks = Task::where('title', 'LIKE', "%$keyword%")
@@ -53,9 +53,18 @@ class TasksController extends Controller
         
         $requestData = $request->all();
         
+        // $task = new Task;
+
+        // $task->title = $request->title;
+
+        // $task->description = $request->description;
+
+        // $task->save();
+
         Task::create($requestData);
 
-        return redirect('manage/tasks')->with('flash_message', 'Task added!');
+        return redirect('manage/tasks');
+
     }
 
     /**
@@ -83,6 +92,7 @@ class TasksController extends Controller
     {
         $task = Task::findOrFail($id);
 
+       // dd($task);
         return view('admin.tasks.edit', compact('task'));
     }
 
@@ -102,7 +112,7 @@ class TasksController extends Controller
         $task = Task::findOrFail($id);
         $task->update($requestData);
 
-        return redirect('manage/tasks')->with('flash_message', 'Task updated!');
+        return redirect('manage/tasks');
     }
 
     /**
@@ -116,6 +126,6 @@ class TasksController extends Controller
     {
         Task::destroy($id);
 
-        return redirect('manage/tasks')->with('flash_message', 'Task deleted!');
+        return redirect('manage/tasks');
     }
 }
