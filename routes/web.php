@@ -15,13 +15,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'tasks','as' => 'tasks.','middleware' => 'auth'], function(){
-	Route::get('/', 'TasksController@index')->name('index');
-	Route::get('/{id}', 'TasksController@show')->name('show');
-	Route::get('/delete/{id}', 'TasksController@delete')->name('delete');
-});
+
+Route::resource('manage/tasks', 'Manage\\TasksController');
+
+// Route::group(['prefix' => 'tasks','as' => 'tasks.','middleware' => 'auth'], function(){
+//     Route::get('/create', 'TasksController@create')->name('create');
+//     Route::get('/', 'TasksController@index')->name('index');
+// 	Route::get('/{id}', 'TasksController@show')->name('show');
+// 	Route::get('/delete/{id}', 'TasksController@delete')->name('delete');
+
+	
+// });
 
 
+//
 
 Auth::routes();
 

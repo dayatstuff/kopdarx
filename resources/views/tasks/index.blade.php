@@ -3,7 +3,11 @@
 
 @section('content')
 	<H4>List Task</H4>
-
+	
+	<a href="{{ url('tasks/create') }}" class="btn btn-success btn-sm" title="Add New Task">
+		<i class="fa fa-plus" aria-hidden="true"></i> Add New
+	</a>
+	
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -14,6 +18,7 @@
 			</tr>
 		</thead>
 		<tbody>
+		
 			@foreach($tasks as $key => $task)
 				<tr>
 					<td>{{$key+1}}</td>
