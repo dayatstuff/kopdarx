@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task ;
+use App\Task;
 
 class TasksController extends Controller
 {
-
 	// function __construct()
 	// {
 	// 	$this->middleware('auth');
@@ -22,9 +21,14 @@ class TasksController extends Controller
 
         return view('tasks.index', [
         	'tasks' => $tasks
-        ]) ;
+        ]);
 
-    }
+	}
+	
+	public function create() 
+	{
+		return view('tasks.create');
+	}
 
     public function show($id)
     {
@@ -40,5 +44,6 @@ class TasksController extends Controller
     {
     	$tasks = Task::find($id)->delete();
     	return redirect('/tasks');
-    }
+	}
+	
 }
