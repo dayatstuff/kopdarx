@@ -15,8 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::resource('manage/tasks', 'Manage\\TasksController');
+Route::group(['prefix' => 'manage', 'middleware' => 'auth'], function(){
+    Route::resource('tasks', 'Manage\\TasksController');
+});
 
 // Route::group(['prefix' => 'tasks','as' => 'tasks.','middleware' => 'auth'], function(){
 //     Route::get('/create', 'TasksController@create')->name('create');
